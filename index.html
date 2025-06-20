@@ -1,80 +1,79 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>مشاهير Mashaheer</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       background: linear-gradient(to bottom, #003366, #0073e6);
       color: white;
+      margin: 0;
+      padding: 0;
       text-align: center;
-      padding: 40px 20px;
     }
-    h1 {
-      font-size: 70px;
-      margin-bottom: 15px;
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.2);
     }
-    h2 {
-      font-size: 45px;
-      margin-top: 10px;
-      margin-bottom: 60px;
+
+    .header img {
+      height: 90px;
+      max-width: 30%;
     }
-    .logo {
-      width: 180px;
-      margin-bottom: 30px;
+
+    .header h1 {
+      font-size: 65px;
+      margin: 0;
+      flex: 1;
+      text-align: left;
+      padding-right: 20px;
     }
-    .btn {
-      display: block;
-      margin: 20px auto;
-      padding: 25px 40px;
-      font-size: 60px;
-      font-weight: bold;
-      border: none;
-      border-radius: 25px;
-      width: 90%;
-      max-width: 800px;
-      color: white;
-      text-decoration: none;
-      transition: transform 0.3s ease;
+
+    .description {
+      font-size: 36px;
+      margin: 30px 20px;
+      line-height: 1.8;
     }
-    .btn:hover {
-      transform: scale(1.05);
-    }
-    .yellow { background-color: #f6b800; }
-    .green { background-color: #28a745; }
-    .blue { background-color: #007bff; }
-    .darkblue { background-color: #004080; }
-    .gold { background-color: #aa8800; }
-    .footer-images {
-      margin-top: 80px;
-    }
-    .footer-images img {
-      height: 80px;
-      margin: 0 15px;
+
+    @media (max-width: 768px) {
+      .header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .header h1 {
+        font-size: 50px;
+        text-align: center;
+        padding-right: 0;
+      }
+
+      .header img {
+        height: 70px;
+        margin-bottom: 10px;
+      }
+
+      .description {
+        font-size: 30px;
+        margin: 20px 15px;
+      }
     }
   </style>
 </head>
 <body>
-
-  <img src="images/mashaheer-logo.png.PNG" alt="شعار مشاهير" class="logo" />
-
-  <h1>مشاهير Mashaheer</h1>
-  <h2>منصة مشاهير للترويج والاعلانات الممولة على التيكتوك<br>إذا عندك منتجات أو محل أو شركة، وتريد تروج لبضاعتك فأنت في المكان الصحيح!</h2>
-
-  <a href="page2.html" class="btn yellow">🚀 أنشئ إعلانك الآن</a>
-  <a href="https://wa.me/9647732100800" class="btn green">💬 راسلنا على واتساب</a>
-  <a href="page3.html" class="btn blue">💳 طرق الدفع</a>
-  <a href="page4.html" class="btn darkblue">📞 جميع طرق التواصل</a>
-  <a href="page5.html" class="btn gold">💰 محفظة الزبون</a>
-
-  <div class="footer-images">
-    <img src="images/tiktok-logo.png.png" alt="TikTok Logo" />
-    <img src="images/tiktok-ads-logo.jpg.jpg" alt="TikTok Ads" />
-    <img src="images/mashaheer-logo.png.PNG" alt="Mashaheer Logo" />
+  <div class="header">
+    <img src="images/mashaheer-logo.png.PNG" alt="شعار مشاهير">
+    <h1>مشاهير Mashaheer</h1>
   </div>
 
+  <div class="description">
+    منصة مشاهير للترويج والاعلانات الممولة على تيكتوك<br>
+    إذا عندك منتجات أو محل أو شركة، وتريد تروج لبضاعتك فأنت بالمكان الصحيح!
+  </div>
 </body>
 </html>
