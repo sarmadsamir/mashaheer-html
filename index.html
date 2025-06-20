@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مشاهير Mashaheer</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, #e0e0ff, #ffffff);
+      text-align: center;
+    }
+    header {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      flex-wrap: wrap;
+    }
+    header img {
+      height: 100px;
+    }
+    .title {
+      font-size: 55px;
+      font-weight: bold;
+      color: #6a1b9a;
+    }
+    .subtitle {
+      font-size: 30px;
+      color: #444;
+      margin-top: 5px;
+    }
+    .button {
+      display: block;
+      width: 80%;
+      max-width: 500px;
+      margin: 20px auto;
+      padding: 25px;
+      font-size: 28px;
+      background-color: #6a1b9a;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      text-decoration: none;
+    }
+    .button.green { background-color: #28a745; }
+    .button.blue { background-color: #007bff; }
+    .button.orange { background-color: #f57c00; }
+    .images {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 30px 10px;
+    }
+    .images img {
+      max-width: 300px;
+      width: 90%;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    @media (max-width: 600px) {
+      .title { font-size: 45px; }
+      .subtitle { font-size: 22px; }
+      .button { font-size: 24px; padding: 20px; }
+      header img { height: 70px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="https://raw.githubusercontent.com/sarmad2025/mashaheer-html/main/images/logo.png" alt="لوجو مشاهير">
+    <div>
+      <div class="title">مشاهير Mashaheer</div>
+      <div class="subtitle">منصة مشاهير للترويج والاعلانات الممولة على تيك توك</div>
+    </div>
+  </header>
+
+  <a href="page2.html" class="button">🚀 أنشئ إعلانك الآن</a>
+  <a href="https://wa.me/9647732100800" class="button green">💬 راسلنا على واتساب</a>
+  <a href="page3.html" class="button blue">💳 طرق الدفع</a>
+  <a href="page4.html" class="button orange">💬 جميع طرق التواصل</a>
+  <a href="tel:07732100800" class="button blue">📞 اتصل بنا الآن</a>
+
+  <div class="images">
+    <img src="https://raw.githubusercontent.com/sarmad2025/mashaheer-html/main/images/tik-tok-ads.jpg" alt="اعلان تيك توك">
+    <img src="https://raw.githubusercontent.com/sarmad2025/mashaheer-html/main/images/manager-panel.png" alt="واجهة مدير الاعلانات">
+    <img src="https://raw.githubusercontent.com/sarmad2025/mashaheer-html/main/images/verified-account.png" alt="الحساب موثوق">
+  </div>
+
+</body>
+</html>
