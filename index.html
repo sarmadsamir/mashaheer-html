@@ -6,74 +6,75 @@
   <title>مشاهير Mashaheer</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      margin: 0;
+      font-family: 'Arial', sans-serif;
       background: linear-gradient(to bottom, #003366, #0073e6);
       color: white;
-      margin: 0;
-      padding: 0;
-      text-align: center;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
     }
 
     .header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 20px;
-      background-color: rgba(0, 0, 0, 0.2);
+      flex-wrap: wrap;
+      gap: 20px;
     }
 
     .header img {
       height: 90px;
-      max-width: 30%;
+      max-width: 100%;
     }
 
-    .header h1 {
+    .header-title {
       font-size: 65px;
+      font-weight: bold;
       margin: 0;
-      flex: 1;
-      text-align: left;
-      padding-right: 20px;
     }
 
     .description {
-      font-size: 36px;
-      margin: 30px 20px;
+      margin-top: 40px;
+      font-size: 35px;
       line-height: 1.8;
     }
 
     @media (max-width: 768px) {
       .header {
-        flex-direction: column;
+        flex-direction: column-reverse;
         text-align: center;
       }
 
-      .header h1 {
+      .header-title {
         font-size: 50px;
-        text-align: center;
-        padding-right: 0;
+      }
+
+      .description {
+        font-size: 28px;
+        margin-top: 30px;
       }
 
       .header img {
         height: 70px;
-        margin-bottom: 10px;
-      }
-
-      .description {
-        font-size: 30px;
-        margin: 20px 15px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="header">
-    <img src="images/mashaheer-logo.png.PNG" alt="شعار مشاهير">
-    <h1>مشاهير Mashaheer</h1>
-  </div>
+  <div class="container">
+    <div class="header">
+      <h1 class="header-title">مشاهير Mashaheer</h1>
+      <img src="images/mashaheer-logo.png.PNG" alt="شعار مشاهير">
+    </div>
 
-  <div class="description">
-    منصة مشاهير للترويج والاعلانات الممولة على تيكتوك<br>
-    إذا عندك منتجات أو محل أو شركة، وتريد تروج لبضاعتك فأنت بالمكان الصحيح!
+    <div class="description">
+      منصة مشاهير للترويج والاعلانات الممولة على تيكتوك<br>
+      إذا عندك منتجات أو محل أو شركة، وتريد تروج لبضاعتك فأنت بالمكان الصحيح!
+    </div>
   </div>
 </body>
 </html>
