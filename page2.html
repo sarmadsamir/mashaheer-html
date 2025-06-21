@@ -31,10 +31,8 @@
 </head>
 <body>
   <h1>نموذج إنشاء إعلان</h1>
-  <form action="https://formspree.io/f/mzzgvzol" method="POST">
-    <!-- تحويل المستخدم لصفحة الشكر -->
-    <input type="hidden" name="_redirect" value="https://www.mashaheer.xyz/thanks.html">
 
+  <form action="https://formspree.io/f/mzzgvzol?redirect=https://www.mashaheer.xyz/thanks.html" method="POST">
     <input type="text" name="ad_code" placeholder="🔢 كود الإعلان" required>
     <input type="text" name="video_link" placeholder="🎬 رابط الفيديو" required>
 
@@ -48,9 +46,7 @@
 
     <input type="number" name="amount" placeholder="💵 مبلغ الإعلان بالدولار" required>
     <input type="number" name="days" placeholder="🗓️ عدد الأيام" required>
-
     <input type="tel" name="phone" placeholder="📞 رقم هاتفك للتواصل" required style="direction: ltr; unicode-bidi: embed;">
-
     <textarea name="notes" placeholder="📝 ملاحظات إضافية"></textarea>
 
     <button type="submit">🚀 أطلق الإعلان</button>
