@@ -1,122 +1,61 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>إدارة محفظة الزبائن</title>
+  <title>إدارة المحفظة</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      padding: 40px;
-      direction: rtl;
-      text-align: center;
-    }
-    h1 {
-      color: #6f42c1;
-      font-size: 48px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 30px;
-    }
-    th, td {
-      border: 1px solid #ccc;
-      padding: 15px;
-      font-size: 28px;
-    }
-    th {
-      background-color: #6f42c1;
-      color: white;
-    }
-    tr:nth-child(even) { background-color: #f2f2f2; }
+    body { font-family: Arial, sans-serif; padding: 30px; text-align: center; background-color: #f5f5f5; }
+    h1 { font-size: 60px; margin-bottom: 40px; color: #6f42c1; }
     input {
-      padding: 15px;
-      font-size: 24px;
-      margin: 10px;
-      width: 300px;
+      width: 80%; max-width: 500px; padding: 20px; font-size: 30px;
+      margin: 15px 0; border-radius: 10px; border: 1px solid #ccc;
     }
     button {
-      padding: 15px 30px;
-      font-size: 26px;
-      background-color: #28a745;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
+      padding: 20px 40px; font-size: 35px; background-color: #28a745;
+      color: white; border: none; border-radius: 12px; cursor: pointer;
     }
-    .container {
-      margin-top: 50px;
+    #message {
+      margin-top: 30px; font-size: 28px; color: #007bff;
+    }
+    a {
+      display: block; margin-top: 30px; font-size: 30px; text-decoration: none;
     }
   </style>
 </head>
 <body>
-  <h1>📊 إدارة محفظة الزبائن</h1>
+  <h1>🛠️ إدارة المحفظة</h1>
+  <input type="text" id="code" placeholder="🔢 كود الزبون" style="direction: ltr; unicode-bidi: embed;">
+  <input type="number" id="balance" placeholder="💰 الرصيد الجديد">
+  <button onclick="updateBalance()">🔄 تحديث الرصيد</button>
+  <div id="message"></div>
+  <a href="index.html">🔙 الرجوع إلى الصفحة الرئيسية</a>
 
-  <div class="container">
-    <input type="text" id="code" placeholder="🔢 كود الزبون">
-    <input type="number" id="balance" placeholder="💰 الرصيد الجديد">
-    <button onclick="updateBalance()">💾 تحديث الرصيد</button>
-  </div>
+  <script>
+    function updateBalance() {
+      const code = document.getElementById("code").value.trim();
+      const balance = document.getElementById("balance").value.trim();
 
-  <table id="customersTable">
-    <thead>
-      <tr>
-        <th>الاسم</th>
-        <th>كود الزبون</th>
-        <th>الرصيد</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+      if (!code || !balance) {
+        document.getElementById("message").textContent = "الرجاء إدخال الكود والرصيد الجديد.";
+        return;
+      }
 
-<script>
-const sheetURL = 'https://script.google.com/macros/s/AKfycbwCT3vXl8nyPVti8dIhzOIjneJKhBXV0HGLxaBAgidjt1S8ltN2whL8qFqACp6SijKLHA/exec';
-
-function fetchData() {
-  fetch(sheetURL)
-    .then(res => res.json())
-    .then(data => {
-      const tbody = document.querySelector("tbody");
-      tbody.innerHTML = "";
-      data.forEach(row => {
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-          <td>${row["الاسم"] || ""}</td>
-          <td>${row["كود الزبون"] || ""}</td>
-          <td>${row["الرصيد"] || 0}</td>
-        `;
-        tbody.appendChild(tr);
+      fetch("https://script.google.com/macros/s/AKfycbzPmz5DgNPYJNhXUc7Oq-wRphzXOPkznuVKGpu2snVA9uMrZ456yFpp05q-Lhqt9u0QVg/exec", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ code, balance })
+      })
+      .then(response => response.text())
+      .then(text => {
+        document.getElementById("message").textContent = text;
+      })
+      .catch(err => {
+        document.getElementById("message").textContent = "حدث خطأ أثناء الإرسال.";
       });
-    });
-}
-
-function updateBalance() {
-  const code = document.getElementById("code").value;
-  const balance = document.getElementById("balance").value;
-  if (!code || !balance) {
-    alert("يرجى إدخال كود الزبون والمبلغ");
-    return;
-  }
-
-  fetch(sheetURL, {
-    method: "POST",
-    body: JSON.stringify({
-      "كود الزبون": code,
-      "الرصيد": parseFloat(balance)
-    }),
-    headers: {
-      "Content-Type": "application/json"
     }
-  })
-  .then(res => res.text())
-  .then(() => {
-    alert("✅ تم تحديث الرصيد بنجاح");
-    fetchData();
-  });
-}
-
-window.onload = fetchData;
-</script>
+  </script>
 </body>
 </html>
