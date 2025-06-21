@@ -2,42 +2,121 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>إدارة محافظ الزبائن</title>
+  <title>إدارة محفظة الزبائن</title>
   <style>
-    body { font-family: Arial; background-color: #f0f0f0; padding: 40px; text-align: center; }
-    table { width: 95%; margin: auto; border-collapse: collapse; font-size: 24px; }
-    th, td { border: 1px solid #aaa; padding: 12px; background: white; }
-    input[type='number'] { width: 80px; font-size: 20px; text-align: center; }
-    button { padding: 8px 15px; font-size: 18px; margin: 5px; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      padding: 40px;
+      direction: rtl;
+      text-align: center;
+    }
+    h1 {
+      color: #6f42c1;
+      font-size: 48px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 30px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 15px;
+      font-size: 28px;
+    }
+    th {
+      background-color: #6f42c1;
+      color: white;
+    }
+    tr:nth-child(even) { background-color: #f2f2f2; }
+    input {
+      padding: 15px;
+      font-size: 24px;
+      margin: 10px;
+      width: 300px;
+    }
+    button {
+      padding: 15px 30px;
+      font-size: 26px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .container {
+      margin-top: 50px;
+    }
   </style>
 </head>
 <body>
-  <h1>🔐 إدارة محفظة الزبائن</h1>
-  <table>
+  <h1>📊 إدارة محفظة الزبائن</h1>
+
+  <div class="container">
+    <input type="text" id="code" placeholder="🔢 كود الزبون">
+    <input type="number" id="balance" placeholder="💰 الرصيد الجديد">
+    <button onclick="updateBalance()">💾 تحديث الرصيد</button>
+  </div>
+
+  <table id="customersTable">
     <thead>
       <tr>
-        <th>كود الزبون</th>
         <th>الاسم</th>
-        <th>الرصيد الحالي</th>
-        <th>تعديل الرصيد</th>
-        <th>ملاحظات</th>
+        <th>كود الزبون</th>
+        <th>الرصيد</th>
       </tr>
     </thead>
-    <tbody>
-      <tr>
-        <td>1122</td>
-        <td>احمد علي</td>
-        <td>50</td>
-        <td>
-          <input type="number" placeholder="رقم">
-          <button>➕</button>
-          <button>➖</button>
-        </td>
-        <td><input type="text" placeholder="ملاحظة"></td>
-      </tr>
-      <!-- كرر لأي زبائن إضافيين -->
-    </tbody>
+    <tbody></tbody>
   </table>
-  <p style="margin-top: 30px;">📥 هذه الصفحة لا تحفظ التغييرات تلقائياً، بل تُستخدم للإدارة اليدوية فقط.</p>
+
+<script>
+const sheetURL = 'https://script.google.com/macros/s/AKfycbwCT3vXl8nyPVti8dIhzOIjneJKhBXV0HGLxaBAgidjt1S8ltN2whL8qFqACp6SijKLHA/exec';
+
+function fetchData() {
+  fetch(sheetURL)
+    .then(res => res.json())
+    .then(data => {
+      const tbody = document.querySelector("tbody");
+      tbody.innerHTML = "";
+      data.forEach(row => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${row["الاسم"] || ""}</td>
+          <td>${row["كود الزبون"] || ""}</td>
+          <td>${row["الرصيد"] || 0}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    });
+}
+
+function updateBalance() {
+  const code = document.getElementById("code").value;
+  const balance = document.getElementById("balance").value;
+  if (!code || !balance) {
+    alert("يرجى إدخال كود الزبون والمبلغ");
+    return;
+  }
+
+  fetch(sheetURL, {
+    method: "POST",
+    body: JSON.stringify({
+      "كود الزبون": code,
+      "الرصيد": parseFloat(balance)
+    }),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+  .then(res => res.text())
+  .then(() => {
+    alert("✅ تم تحديث الرصيد بنجاح");
+    fetchData();
+  });
+}
+
+window.onload = fetchData;
+</script>
 </body>
 </html>
